@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddBooks">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/lis_uusi_kirja"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/tbKirjaNimi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="43dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/kirjan_nimi"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="76dp"
+        tools:ignore="LabelFor" />
+
+    <EditText
+        android:id="@+id/tbKirjailijaNimi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tbKirjaNimi"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/kirjailijan_nimi"
+        tools:ignore="LabelFor" />
+
+    <EditText
+        android:id="@+id/tbLainauspvm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tbKirjailijaNimi"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/lainausp_iv_m_r"
+        tools:ignore="LabelFor" />
+
+    <EditText
+        android:id="@+id/tbOstopvm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tbLainauspvm"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/osto_saantip_iv_m_r"
+        tools:ignore="LabelFor" />
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="199dp"
+        android:text="@string/lis_kirja" />
+</RelativeLayout>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">BookApp</string>
+    <string name="tarkastele_kirjoja">Tarkastele kirjoja</string>
+    <string name="lis_kirjoja">Lisää kirjoja</string>
+    <string name="p_sivulle">Pääsivulle</string>
+    <string name="kirjasi">Kirjasi</string>
+    <string name="lis_uusi_kirja">Lisää uusi kirja</string>
+    <string name="kirjan_nimi">Kirjan nimi</string>
+    <string name="kirjailijan_nimi">Kirjailijan nimi</string>
+    <string name="lainausp_iv_m_r">Lainauspäivämäärä</string>
+    <string name="osto_saantip_iv_m_r">Osto/saantipäivämäärä</string>
+    <string name="lis_kirja">Lisää kirja</string>
+</resources>
