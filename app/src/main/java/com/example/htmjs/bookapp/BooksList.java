@@ -47,11 +47,13 @@ public class BooksList extends AppCompatActivity {
                 finish();
             }
         });
+
+
     }
 
     private void getBooks() {
 
-        final String getBooksUrl = "http://192.168.56.1/jerephp/KirjaSovellus/get_books.php";
+        final String getBooksUrl = "http://10.0.2.2:50645/api/Books";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, getBooksUrl, new Response.Listener<String>() {
             @Override
@@ -59,18 +61,18 @@ public class BooksList extends AppCompatActivity {
                 Log.d("Kirjojen haku", response);
 
                 try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    JSONArray jsonArray = jsonObject.getJSONArray("book");
+                    JSONArray jsonArray = new JSONArray(response);
+                    //JSONArray jsonArray = jsonObject.getJSONArray("");
 
                     for(int i = 0; i < jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
 
                         _books.add(new Books(
-                                object.getInt("ID"),
+                                object.getInt("id"),
                                 "Kirja: " + object.getString("kirja_nimi"),
                                 "Kirjailija: " + object.getString("kirjailija_nimi"),
                                 "Lainauspäivämäärä: " + object.getString("lainauspvm"),
-                                "Osto/saantipäivämäärä: " + object.getString("ostopvm"),
+                                "Osto/saantipäivämäärä: " + object.getString("ostospvm"),
                                 "Lukemispäivämäärä: " + object.getString("lukemispvm"),
                                 "Palautuspäivämäärä: " + object.getString("palautuspvm")
                         ));
