@@ -1,6 +1,7 @@
 package com.example.htmjs.bookapp;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,8 +14,12 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +33,7 @@ public class AddBooks extends AppCompatActivity {
     EditText loanDate;
     EditText buyDate;
     Button add;
+    Button toMainPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +63,23 @@ public class AddBooks extends AppCompatActivity {
 
             }
         });
+
+        toMainPage = findViewById(R.id.btnPaasivulle);
+        toMainPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AddBooks.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void addBooks(final String _book, final String _author, final String _loan, final String _buy) {
 
-        final String addBooksUrl = "http://192.168.56.1/jerephp/KirjaSovellus/add_book.php";
+        final String addBooksUrl = "http://10.0.2.2:50645/api/Books";
+
+
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, addBooksUrl, new Response.Listener<String>() {
             @Override
@@ -85,14 +103,18 @@ public class AddBooks extends AppCompatActivity {
                 params.put("kirja_nimi", _book);
                 params.put("kirjailija_nimi", _author);
                 params.put("lainauspvm", _loan);
-                params.put("ostopvm", _buy);
+                params.put("ostospvm", _buy);
+
+                Log.d("Response", params.toString());
 
                 return params;
             }
         };
 
         Volley.newRequestQueue(this).add(stringRequest);
+
     }
+
 
 
 }
