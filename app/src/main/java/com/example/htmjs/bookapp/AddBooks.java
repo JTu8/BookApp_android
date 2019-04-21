@@ -18,6 +18,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -79,40 +80,51 @@ public class AddBooks extends AppCompatActivity {
 
         final String addBooksUrl = "http://10.0.2.2:50645/api/Books";
 
+        final JSONObject request = new JSONObject();
+        try {
+            request.put("kirja_nimi", _book);
+            request.put("kirjailija_nimi", _author);
+            request.put("lainauspvm", _loan);
+            request.put("ostospvm", _buy);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, addBooksUrl, new Response.Listener<String>() {
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, addBooksUrl, request, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(String response) {
-                Log.d("Kirjan lisäys", response);
-                progressDialog.dismiss();
-                Toast.makeText(AddBooks.this, "Kirjan lisäys onnistui", Toast.LENGTH_LONG).show();
+            public void onResponse(JSONObject response) {
+                try {
+                    boolean error = response.getBoolean("Error");
+                    String message = response.getString("Message");
+
+                    if (!error) {
+                        JSONArray books = response.optJSONArray("books");
+
+                        Log.d("Kirjan lisäys", response.toString());
+                        Log.d("Lisäys,", request.toString());
+                        progressDialog.dismiss();
+                        Toast.makeText(AddBooks.this, "Kirjan lisäys onnistui", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Toast.makeText(AddBooks.this, "Kirjan lisäys epäonnistui", Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("Kirjan lisäys", "Error: " + error.getMessage());
                 progressDialog.dismiss();
-                Toast.makeText(AddBooks.this, "Kirjan lisäys epäonnistui", Toast.LENGTH_LONG).show();
             }
         }
-        ) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String>  params = new HashMap<>();
-                params.put("kirja_nimi", _book);
-                params.put("kirjailija_nimi", _author);
-                params.put("lainauspvm", _loan);
-                params.put("ostospvm", _buy);
 
-                Log.d("Response", params.toString());
+        );
 
-                return params;
-            }
-        };
-
-        Volley.newRequestQueue(this).add(stringRequest);
-
+        Volley.newRequestQueue(this).add(objectRequest);
+        
     }
 
 
