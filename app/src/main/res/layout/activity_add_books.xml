@@ -45,31 +45,38 @@
         android:id="@+id/tbLainauspvm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_below="@+id/tbKirjailijaNimi"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="37dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="@string/lainausp_iv_m_r"
+        android:inputType="textPersonName"
         tools:ignore="LabelFor" />
 
     <EditText
         android:id="@+id/tbOstopvm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_below="@+id/tbLainauspvm"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="36dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="@string/osto_saantip_iv_m_r"
+        android:inputType="textPersonName"
         tools:ignore="LabelFor" />
 
     <Button
         android:id="@+id/btnAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="129dp"
+        android:layout_height="69dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="199dp"
+        android:layout_marginStart="153dp"
+        android:layout_marginEnd="129dp"
+        android:layout_marginBottom="137dp"
         android:text="@string/lis_kirja" />
 
     <Button
@@ -83,5 +90,21 @@
         android:layout_marginEnd="129dp"
         android:layout_marginBottom="-151dp"
         android:text="@string/p_sivulle" />
+
+    <CheckBox
+        android:id="@+id/cbCheckLoanDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tbKirjailijaNimi"
+        android:layout_marginBottom="-32dp"
+        android:text="@string/lainausp_iv_m_r" />
+
+    <CheckBox
+        android:id="@+id/cdCheckBuyDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tbLainauspvm"
+        android:layout_marginBottom="-35dp"
+        android:text="@string/osto_saantip_iv_m_r" />
 
 </RelativeLayout>

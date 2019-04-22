@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -35,6 +36,8 @@ public class AddBooks extends AppCompatActivity {
     EditText buyDate;
     Button add;
     Button toMainPage;
+    CheckBox checkBoxLoan;
+    CheckBox checkBoxBuy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,36 @@ public class AddBooks extends AppCompatActivity {
         bookName = findViewById(R.id.tbKirjaNimi);
         authorName = findViewById(R.id.tbKirjailijaNimi);
         loanDate = findViewById(R.id.tbLainauspvm);
+        loanDate.setVisibility(View.INVISIBLE);
         buyDate = findViewById(R.id.tbOstopvm);
+        buyDate.setVisibility(View.INVISIBLE);
+
+        checkBoxLoan = findViewById(R.id.cbCheckLoanDate);
+        checkBoxLoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (checkBoxLoan.isChecked()) {
+                    loanDate.setVisibility(View.VISIBLE);
+                }
+                else {
+                    loanDate.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        checkBoxBuy = findViewById(R.id.cdCheckBuyDate);
+        checkBoxBuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (checkBoxBuy.isChecked()) {
+                    buyDate.setVisibility(View.VISIBLE);
+                }
+                else {
+                    buyDate.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
 
         progressDialog = new ProgressDialog(AddBooks.this);
 
