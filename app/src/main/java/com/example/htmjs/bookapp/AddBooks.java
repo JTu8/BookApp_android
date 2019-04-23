@@ -1,5 +1,6 @@
 package com.example.htmjs.bookapp;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,12 +56,22 @@ public class AddBooks extends AppCompatActivity {
         buyDate = findViewById(R.id.tbOstopvm);
         buyDate.setVisibility(View.INVISIBLE);
 
+        final String[] laina = new String[1];
+        final String[] osto = new String[1];
+
+        @SuppressLint("SimpleDateFormat") final DateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+        final Date loandate = new Date();
+        final Date buydate = new Date();
+
         checkBoxLoan = findViewById(R.id.cbCheckLoanDate);
         checkBoxLoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (checkBoxLoan.isChecked()) {
                     loanDate.setVisibility(View.VISIBLE);
+
+                    laina[0] = format.format(loandate);
+                    loanDate.getText().toString().trim();
                 }
                 else {
                     loanDate.setVisibility(View.INVISIBLE);
@@ -70,6 +85,10 @@ public class AddBooks extends AppCompatActivity {
             public void onClick(View view) {
                 if (checkBoxBuy.isChecked()) {
                     buyDate.setVisibility(View.VISIBLE);
+
+
+                    osto[0] = format.format(buydate);
+                    buyDate.getText().toString().trim();
                 }
                 else {
                     buyDate.setVisibility(View.INVISIBLE);
@@ -89,10 +108,10 @@ public class AddBooks extends AppCompatActivity {
 
                 String kirja = bookName.getText().toString().trim();
                 String kirjailija = authorName.getText().toString().trim();
-                String laina = loanDate.getText().toString().trim();
-                String osto = buyDate.getText().toString().trim();
 
-                addBooks(kirja, kirjailija, laina, osto);
+
+
+                addBooks(kirja, kirjailija, laina[0], osto[0]);
 
             }
         });
@@ -117,7 +136,7 @@ public class AddBooks extends AppCompatActivity {
             request.put("kirja_nimi", _book);
             request.put("kirjailija_nimi", _author);
             request.put("lainauspvm", _loan);
-            request.put("ostospvm", _buy);
+            request.put("ostopvm", _buy);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

@@ -72,7 +72,7 @@ public class BooksList extends AppCompatActivity {
                                 "Kirja: " + object.getString("kirja_nimi"),
                                 "Kirjailija: " + object.getString("kirjailija_nimi"),
                                 "Lainauspäivämäärä: " + object.getString("lainauspvm"),
-                                "Osto/saantipäivämäärä: " + object.getString("ostospvm"),
+                                "Osto/saantipäivämäärä: " + object.getString("ostopvm"),
                                 "Lukemispäivämäärä: " + object.getString("lukemispvm"),
                                 "Palautuspäivämäärä: " + object.getString("palautuspvm")
                         ));
