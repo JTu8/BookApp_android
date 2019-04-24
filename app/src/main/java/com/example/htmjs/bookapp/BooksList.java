@@ -1,12 +1,18 @@
 package com.example.htmjs.bookapp;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -93,5 +99,28 @@ public class BooksList extends AppCompatActivity {
         );
 
         Volley.newRequestQueue(this).add(stringRequest);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @SuppressLint("InflateParams")
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                int ID = _books.get(i).getID();
+                Toast.makeText(getApplicationContext(), "Klikattu " + ID, Toast.LENGTH_LONG).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(BooksList.this);
+                builder.setTitle("Muokkaa");
+                LayoutInflater inflater = getLayoutInflater();
+
+                builder.setView(inflater.inflate(R.layout.dialog_changebook, null))
+                        .setPositiveButton("Muokkaa", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+
+                builder.create();
+                builder.show();
+            }
+        });
     }
 }
