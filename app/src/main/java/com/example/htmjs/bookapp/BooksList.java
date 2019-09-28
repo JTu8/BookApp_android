@@ -59,7 +59,7 @@ public class BooksList extends AppCompatActivity {
 
     private void getBooks() {
 
-        final String getBooksUrl = "http://10.0.2.2:50645/api/Books";
+        final String getBooksUrl = "http://localhost:1337/api/books";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, getBooksUrl, new Response.Listener<String>() {
             @Override
@@ -117,6 +117,8 @@ public class BooksList extends AppCompatActivity {
 
                             }
                         });
+                        
+
 
                 builder.create();
                 builder.show();

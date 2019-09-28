@@ -129,7 +129,7 @@ public class AddBooks extends AppCompatActivity {
 
     private void addBooks(final String _book, final String _author, final String _loan, final String _buy) {
 
-        final String addBooksUrl = "http://10.0.2.2:50645/api/Books";
+        final String addBooksUrl = "http://127.0.0.1:1337/api/books";
 
         final JSONObject request = new JSONObject();
         try {
