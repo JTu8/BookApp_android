@@ -36,8 +36,3 @@ assembleDebug:
   artifacts:
     paths:
     - app/build/outputs/
-
-debugTests:
-  stage: test
-  script:
-    - ./gradlew -Pci --console=plain :app:testDebug
